@@ -79,3 +79,43 @@ chatForm.addEventListener("submit", (e) => {
     chatLog.scrollTop = chatLog.scrollHeight;
   }, 800);
 });
+
+// Envío del formulario de contacto (Web3Forms)
+const formContacto = document.getElementById("formularioContacto");
+
+if (formContacto) {
+  formContacto.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btnEnviar = document.getElementById("btnEnviar");
+    const mensajeEstado = document.getElementById("mensajeEstado");
+
+    btnEnviar.textContent = "Enviando...";
+    btnEnviar.disabled = true;
+
+    const datos = new FormData(formContacto);
+
+    try {
+      const respuesta = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: datos,
+      });
+
+      const resultado = await respuesta.json();
+
+      if (resultado.success) {
+        mensajeEstado.textContent = "¡Mensaje enviado con éxito! Te contactaremos pronto.";
+        mensajeEstado.style.color = "#00ff9c"; // Verde neón
+        formContacto.reset(); // Limpia los campos
+      } else {
+        mensajeEstado.textContent = "Hubo un error. Intenta de nuevo.";
+        mensajeEstado.style.color = "#ff4c4c"; // Rojo
+      }
+    } catch (error) {
+      mensajeEstado.textContent = "Error de conexión. Revisa tu internet.";
+      mensajeEstado.style.color = "#ff4c4c";
+    } finally {
+      btnEnviar.textContent = "Enviar mensaje";
+      btnEnviar.disabled = false;
+    }
+  });
+}
