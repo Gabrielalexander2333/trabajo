@@ -3,110 +3,141 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CyberRuta - Academia de Ciberseguridad</title>
+  <meta name="description" content="Aprende ciberseguridad desde cero con cursos prácticos. Fundamentos, ethical hacking y análisis forense digital.">
+  <title>CyberRuta | Cursos de ciberseguridad</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ============ HEADER + NAV ============ -->
-  <header>
-    <p class="logo">CyberRuta</p>
-
-    <nav>
-      <ul>
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#categorias">Categorías</a></li>
-        <li><a href="#ofertas">Ofertas</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
+  <header class="topbar">
+    <a href="#inicio" class="logo">Cyber<span>Ruta</span></a>
+    <button id="menuBtn" class="menu-btn">☰</button>
+    <nav id="menu" class="menu">
+      <a href="#inicio">Inicio</a>
+      <a href="#cursos">Cursos</a>
+      <a href="#ofertas">Ofertas</a>
+      <a href="#asistente">Asistente</a>
+      <a href="#contacto">Contacto</a>
     </nav>
   </header>
 
-
-  <!-- ============ CONTENIDO PRINCIPAL ============ -->
   <main>
 
-    <!-- Sección de bienvenida -->
-    <section id="inicio">
-      <h1>Aprende <span>Ciberseguridad</span> desde cero</h1>
-      <p>
-        En CyberRuta te enseñamos a proteger sistemas y detectar amenazas
-        con cursos prácticos dictados por expertos del sector.
+    <section id="inicio" class="hero">
+      <h1 class="animate__animated animate__fadeInDown">Aprende ciberseguridad desde cero</h1>
+      <p class="terminal animate__animated animate__fadeIn" style="--animate-delay: 0.3s">
+        <span>$</span> <span id="comando"></span>
       </p>
-      <a href="#categorias">Ver cursos</a>
+      <p class="hero-desc animate__animated animate__fadeInUp" style="--animate-delay: 0.5s">
+        Cursos prácticos dictados por expertos para que aprendas a proteger
+        sistemas, detectar amenazas y dar tus primeros pasos en el sector.
+      </p>
+      <div class="hero-btns animate__animated animate__fadeInUp" style="--animate-delay: 0.7s">
+        <a href="#cursos" class="btn">Ver cursos</a>
+        <a href="https://wa.me/573167208514?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20cursos%20de%20CyberRuta"
+           target="_blank" rel="noopener" class="btn btn-outline">Hablar por WhatsApp</a>
+      </div>
     </section>
 
-    <!-- Sección de cursos (cuadrícula de productos) -->
-    <section id="categorias">
-      <h2>Nuestros Cursos</h2>
+    <section id="cursos" class="section">
+      <h2>Nuestros cursos</h2>
+      <p class="section-desc">Elige el que más se ajuste a tu nivel.</p>
 
-      <div class="grid-cursos">
+      <div class="cards">
 
-        <!-- Producto 1 -->
-        <article class="curso">
-          <div class="curso-imagen">🔒</div>
+        <article class="card" data-anim="fadeInUp">
+          <div class="card-icon">🔒</div>
           <h3>Fundamentos de Ciberseguridad</h3>
-          <p>Aprende los conceptos básicos de redes y seguridad informática.</p>
+          <p>Conceptos básicos de redes y seguridad informática, sin experiencia previa.</p>
           <span class="precio">$149.000 COP</span>
-          <a href="#contacto">Inscribirme</a>
+          <a href="https://wa.me/573167208514?text=Hola%2C%20me%20interesa%20el%20curso%20de%20Fundamentos"
+             target="_blank" rel="noopener" class="btn">Inscribirme</a>
         </article>
 
-        <!-- Producto 2 -->
-        <article class="curso">
-          <div class="curso-imagen">🛡️</div>
+        <article class="card" data-anim="fadeInUp">
+          <div class="card-icon">🛡️</div>
           <h3>Ethical Hacking</h3>
-          <p>Descubre cómo piensan los atacantes para poder defenderte.</p>
+          <p>Descubre cómo piensan los atacantes para aprender a defenderte mejor.</p>
           <span class="precio">$289.000 COP</span>
-          <a href="#contacto">Inscribirme</a>
+          <a href="https://wa.me/573167208514?text=Hola%2C%20me%20interesa%20el%20curso%20de%20Ethical%20Hacking"
+             target="_blank" rel="noopener" class="btn">Inscribirme</a>
         </article>
 
-        <!-- Producto 3 -->
-        <article class="curso">
-          <div class="curso-imagen">💻</div>
+        <article class="card" data-anim="fadeInUp">
+          <div class="card-icon">💻</div>
           <h3>Análisis Forense Digital</h3>
-          <p>Investiga incidentes y recupera evidencia digital.</p>
+          <p>Investiga incidentes y aprende a recuperar evidencia digital paso a paso.</p>
           <span class="precio">$399.000 COP</span>
-          <a href="#contacto">Inscribirme</a>
+          <a href="https://wa.me/573167208514?text=Hola%2C%20me%20interesa%20el%20curso%20de%20An%C3%A1lisis%20Forense"
+             target="_blank" rel="noopener" class="btn">Inscribirme</a>
         </article>
 
       </div>
     </section>
 
-    <!-- Sección de ofertas -->
-    <section id="ofertas">
-      <h2>Ofertas de la Semana</h2>
+    <section id="ofertas" class="section alt">
+      <h2>Ofertas de la semana</h2>
+      <p class="section-desc">Combos pensados para empezar rápido.</p>
 
-      <div class="grid-cursos">
-
-        <article class="curso">
-          <div class="curso-imagen">⭐</div>
+      <div class="cards">
+        <article class="card destacado" data-anim="fadeInUp">
+          <div class="card-icon">⭐</div>
           <h3>Pack Iniciación</h3>
           <p>Fundamentos + Ethical Hacking en un solo combo.</p>
           <span class="precio">$379.000 COP</span>
-          <a href="#contacto">Aprovechar</a>
+          <a href="https://wa.me/573167208514?text=Hola%2C%20quiero%20el%20Pack%20Iniciaci%C3%B3n"
+             target="_blank" rel="noopener" class="btn">Aprovechar</a>
         </article>
-
       </div>
     </section>
 
-    <!-- Sección de contacto -->
-    <section id="contacto">
-      <h2>¿Listo para empezar?</h2>
-      <p>Escríbenos y un asesor te ayudará a elegir tu curso ideal.</p>
-      <a href="mailto:contacto@cyberruta.com">contacto@cyberruta.com</a>
+    <section id="asistente" class="section">
+      <h2>¿No sabes cuál elegir?</h2>
+      <p class="section-desc">
+        Escríbele a nuestro asistente y te recomienda el curso ideal según lo que buscas.
+      </p>
+
+      <div class="chat" data-anim="fadeInUp">
+        <div class="chat-log" id="chatLog">
+          <div class="msg bot">Hola, soy CyberBot. Cuéntame qué te gustaría aprender y te ayudo a elegir.</div>
+        </div>
+        <form id="chatForm" class="chat-form">
+          <input id="chatInput" type="text" placeholder="Escribe tu mensaje..." autocomplete="off" required>
+          <button type="submit" class="btn">Enviar</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="contacto" class="section alt">
+      <h2>Contacto</h2>
+      <p class="section-desc">
+        Escríbenos por WhatsApp o llámanos y con gusto te asesoramos.
+      </p>
+
+      <div class="contacto-btns" data-anim="fadeInUp">
+        <a href="https://wa.me/573167208514?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20cursos"
+           target="_blank" rel="noopener" class="btn">WhatsApp: +57 316 720 8514</a>
+        <a href="tel:+573167208514" class="btn btn-outline">Llamar: +57 316 720 8514</a>
+      </div>
     </section>
 
   </main>
 
-
-  <!-- ============ FOOTER ============ -->
   <footer>
-    <p>&copy; 2026 CyberRuta. Todos los derechos reservados.</p>
-    <ul class="redes">
-      <li><a href="#">in</a></li>
-      <li><a href="#">X</a></li>
-      <li><a href="#">IG</a></li>
-    </ul>
+    <p>© 2026 CyberRuta</p>
+    <div class="footer-contacto">
+      <a href="https://wa.me/573167208514" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="mailto:gabrielalexander20032002@gmail.com">Correo</a>
+    </div>
   </footer>
 
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
