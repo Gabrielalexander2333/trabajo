@@ -49,36 +49,64 @@ elementosAnimados.forEach((el, i) => {
   observador.observe(el);
 });
 
-// Chat de prueba (CyberBot)
+// CHAT CONECTADO IA REAL (Backend local)
 const chatForm = document.getElementById("chatForm");
 const chatInput = document.getElementById("chatInput");
 const chatLog = document.getElementById("chatLog");
 
-chatForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+if (chatForm) {
+  chatForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  const texto = chatInput.value.trim();
-  if (!texto) return;
+    const texto = chatInput.value.trim();
+    if (!texto) return;
 
-  // Mensaje del usuario
-  const mensajeUsuario = document.createElement("div");
-  mensajeUsuario.className = "msg user";
-  mensajeUsuario.textContent = texto;
-  chatLog.appendChild(mensajeUsuario);
+    // Mostrar mensaje del usuario
+    const mensajeUsuario = document.createElement("div");
+    mensajeUsuario.className = "msg user";
+    mensajeUsuario.textContent = texto;
+    chatLog.appendChild(mensajeUsuario);
 
-  chatInput.value = "";
-  chatLog.scrollTop = chatLog.scrollHeight;
-
-  // Respuesta simulada del bot
-  setTimeout(() => {
-    const respuesta = document.createElement("div");
-    respuesta.className = "msg bot";
-    respuesta.textContent =
-      "Gracias por escribir. Pronto te conectaremos con un asesor por WhatsApp. Mientras tanto, revisa nuestros cursos arriba.";
-    chatLog.appendChild(respuesta);
+    chatInput.value = "";
+    chatInput.disabled = true; // Bloquea input mientras piensa
     chatLog.scrollTop = chatLog.scrollHeight;
-  }, 800);
-});
+
+    // Mostrar mensaje de "Escribiendo..."
+    const escribiendo = document.createElement("div");
+    escribiendo.className = "msg bot";
+    escribiendo.textContent = "CyberBot está pensando...";
+    chatLog.appendChild(escribiendo);
+    chatLog.scrollTop = chatLog.scrollHeight;
+
+    try {
+      // petición a nuestro servidor en Node.js
+      const respuesta = await fetch("http://localhost:3000/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mensaje: texto }),
+      });
+
+      const datos = await respuesta.json();
+      
+      // Validación para evitar burbujas vacías
+      if (datos && datos.respuesta && datos.respuesta.trim() !== "") {
+        escribiendo.textContent = datos.respuesta;
+      } else {
+        escribiendo.textContent = "Lo siento, no pude procesar tu mensaje. Intenta de nuevo.";
+        escribiendo.style.color = "#ff4c4c"; // Color rojo
+      }
+
+    } catch (error) {
+      console.error("Error al conectar con la IA:", error);
+      escribiendo.textContent = "Error de conexión. Asegúrate de que el servidor esté encendido.";
+      escribiendo.style.color = "#ff4c4c"; // Color rojo para el error
+    } finally {
+      chatInput.disabled = false; // Volver a activar el input
+      chatInput.focus(); // Poner el cursor en la cajita otra vez
+      chatLog.scrollTop = chatLog.scrollHeight;
+    }
+  });
+}
 
 // Envío del formulario de contacto (Web3Forms)
 const formContacto = document.getElementById("formularioContacto");
